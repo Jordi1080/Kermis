@@ -2,7 +2,7 @@
 public class BotsAutos extends Attractie{
 	public BotsAutos(){
 		this.naam = "Botsauto's";
-		this.prijs = 2.50;
+		this.prijs = 250;
 	}
 	
 	void draaien(){

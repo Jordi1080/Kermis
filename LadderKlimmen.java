@@ -2,7 +2,7 @@
 public class LadderKlimmen extends Attractie{
 	public LadderKlimmen(){
 		this.naam = "Ladder Klimmen";
-		this.prijs = 5.00;
+		this.prijs = 500;
 	}
 	
 	void draaien(){

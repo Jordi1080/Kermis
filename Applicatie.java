@@ -14,7 +14,6 @@ public class Applicatie {
 		kermis.toonWelkom();
 		
 		while (true){
-			//kermis.toonAantalKeerBezocht();
 			kermis.toonAttracties();
 			kermis.attractieKeuze();
 			

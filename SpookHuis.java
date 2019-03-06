@@ -3,7 +3,7 @@ import java.util.Random;
 public class SpookHuis extends Attractie{
 	public SpookHuis(){
 		this.naam = "Spookhuis";
-		this.prijs = 3.20;
+		this.prijs = 320;
 	}
 	
 	void draaien(){

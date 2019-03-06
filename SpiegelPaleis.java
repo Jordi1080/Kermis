@@ -2,7 +2,7 @@
 public class SpiegelPaleis extends Attractie{
 	public SpiegelPaleis(){
 		this.naam = "Spiegelpaleis";
-		this.prijs = 2.75;
+		this.prijs = 275;
 	}
 	
 	void draaien(){

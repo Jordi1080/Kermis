@@ -57,7 +57,16 @@ public class Kermis {
 				System.out.println("je gaat naar het Ladderklimmen");
 				attracties.get(5).draaien();
 				kassa.verdienGeld(attracties.get(5));
-			break;
+				break;
+				
+			case "o":
+				kassa.toonOmzet(this);
+				System.out.println("Omzet per attractie: ");
+				toonOmzet();
+				break;
+			case "k":
+				toonAantalKeerBezocht();
+				break;
 				
 			default:
 					System.out.println("je moet 1-6 typen dombo");
@@ -78,6 +87,13 @@ public class Kermis {
 		System.out.println("Dit is hoe vaak elke attractie tot nu toe bezocht is:");
 		for (Attractie a : attracties){
 			System.out.println(a.naam + ": " + a.aantalKeerBezocht);
+		}
+		System.out.println("");
+	}
+	
+	void toonOmzet(){
+		for (Attractie a : attracties){
+			kassa.toonOmzet(a);
 		}
 		System.out.println("");
 	}
