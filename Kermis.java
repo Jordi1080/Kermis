@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 
 public class Kermis {
-	int geld = 1000;
+	
 	String naam;
 	ArrayList<Attractie> attracties = new ArrayList<>();
 	Kassa kassa;
@@ -24,54 +24,85 @@ public class Kermis {
 	}
 	
 	void attractieKeuze(){
-		if (sc.hasNextLine()){
-			input = sc.nextLine().trim();
-			
-			switch(input){
-			case "1": 
-				System.out.println("je gaat naar de Botsauto's");
-				attracties.get(0).draaien();
-				kassa.verdienGeld(attracties.get(0));
-				break;
-			case "2": 
-				System.out.println("je gaat naar de Spin");
-				attracties.get(1).draaien();
-				kassa.verdienGeld(attracties.get(1));
-				break;
-			case "3": 
-				System.out.println("je gaat naar het Spiegelpaleis");
-				attracties.get(2).draaien();
-				kassa.verdienGeld(attracties.get(2));
-				break;
-			case "4": 
-				System.out.println("je gaat naar het Spookhuis");
-				attracties.get(3).draaien();
-				kassa.verdienGeld(attracties.get(3));
-				break;
-			case "5": 
-				System.out.println("je gaat naar Hawaii");
-				attracties.get(4).draaien();
-				kassa.verdienGeld(attracties.get(4));
-				break;
-			case "6": 
-				System.out.println("je gaat naar het Ladderklimmen");
-				attracties.get(5).draaien();
-				kassa.verdienGeld(attracties.get(5));
-				break;
+		try{
+			if (sc.hasNextLine()){
+				input = sc.nextLine().trim();
 				
-			case "o":
-				kassa.toonOmzet(this);
-				System.out.println("Omzet per attractie: ");
-				toonOmzet();
-				break;
-			case "k":
-				toonAantalKeerBezocht();
-				break;
-				
-			default:
-					System.out.println("je moet 1-6 typen dombo");
+				switch(input){
+				case "1": 
+					System.out.println("Je gaat naar de Botsauto's\n");
+					attracties.get(0).draaien();
+					// verdienGeld moet alleen gebeuren als de attractie niet kapot is
+					// miss in andere klasse zetten?
+					kassa.verdienGeld(attracties.get(0));
+					break;
+				case "2": 
+					System.out.println("Je gaat naar de Spin\n");
+					attracties.get(1).draaien();
+					kassa.verdienGeld(attracties.get(1));
+					break;
+				case "3": 
+					System.out.println("Je gaat naar het Spiegelpaleis\n");
+					attracties.get(2).draaien();
+					kassa.verdienGeld(attracties.get(2));
+					break;
+				case "4": 
+					System.out.println("Je gaat naar het Spookhuis\n");
+					attracties.get(3).draaien();
+					kassa.verdienGeld(attracties.get(3));
+					break;
+				case "5": 
+					System.out.println("Je gaat naar Hawaii\n");
+					attracties.get(4).draaien();
+					kassa.verdienGeld(attracties.get(4));
+					break;
+				case "6": 
+					System.out.println("Je gaat naar het Ladderklimmen\n");
+					attracties.get(5).draaien();
+					kassa.verdienGeld(attracties.get(5));
+					break;
+					
+				case "o":
+					kassa.toonOmzet(this);
+					System.out.println("Omzet per attractie: ");
+					toonOmzet();
+					break;
+				case "k":
+					toonAantalKeerBezocht();
+					break;
+				case "u":
+					onderhoudOveral();
+					break;
+				case "b":
+					new BelastingInspecteur().komtLangs(this);
+					kassa.belastingBezoeken++;
+					break;
+				default:
+						System.out.println("nee");
+				}
 			}
 		}
+		catch (AttractieNietOnderhoudenException e){
+		}
+	}
+	
+	void onderhoudOveral(){
+		for (Attractie a : attracties){
+			if (a instanceof RisicoRijkeAttractie){
+				((RisicoRijkeAttractie) a).onderhoudUitvoeren();
+			}
+		}
+	}
+	
+	void doeGokBelastingInKassa(BelastingInspecteur bi){
+		for (Attractie a : attracties){
+			if (a instanceof GokAttractie){
+				bi.geldGeind += a.opzijGezetteOmzet;
+				a.opzijGezetteOmzet = 0;
+				
+			}
+		}
+
 	}
 	
 	void toonAttracties(){
@@ -79,6 +110,7 @@ public class Kermis {
 		for (int i = 0; i < attracties.size(); i++){
 			System.out.println(attracties.get(i).naam + " (" + (i+1) +")");
 		}
+		System.out.println("");
 		System.out.println("Waar wil je naartoe?");
 		System.out.println("");
 	}

@@ -1,4 +1,4 @@
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class Applicatie {
 
@@ -16,8 +16,7 @@ public class Applicatie {
 		while (true){
 			kermis.toonAttracties();
 			kermis.attractieKeuze();
-			
-			
+
 		}	
 	}
 

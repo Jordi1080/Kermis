@@ -6,11 +6,12 @@ public abstract class Attractie{
 	int omzet;
 	int geldBinnenGehaald;
 	int oppervlakte;
+	int opzijGezetteOmzet;
 	
 	void wordtBezocht(){
 		aantalKeerBezocht++;
 		omzet += prijs;
 	}
 	
-	abstract void draaien();
+	abstract void draaien() throws AttractieNietOnderhoudenException;
 }

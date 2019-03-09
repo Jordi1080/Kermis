@@ -1,6 +1,7 @@
 
 public interface GokAttractie {
-	int kansSpelBelasting = 30;
+	double kansSpelBelasting = 0.30;
 	
-	int kansSpelBelastingBetalen();
+	
+	int kansSpelBelastingBetalen(int omzet);
 }
